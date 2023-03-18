@@ -16,9 +16,9 @@ ToolSettings.SetToolSettings(context: Context,
                             dupFinderExcludePattern: new []
                             {
                                 BuildParameters.RootDirectoryPath + "/src/Cake.Unity/obj/**/*.*",
-                                BuildParameters.RootDirectoryPath + "/src/Cake.Unity.FSharp.Tests/**/*.fs",
+                                BuildParameters.RootDirectoryPath + "/src/Cake.Unity.CSharp.Tests/**/*.cs",
                             },
-                            testCoverageFilter: "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]*",
+                            testCoverageFilter: "+[*]* -[nunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]*",
                             testCoverageExcludeByAttribute: "*.ExcludeFromCodeCoverage*",
                             testCoverageExcludeByFile: "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs");
 
