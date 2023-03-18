@@ -1,16 +1,11 @@
-﻿module Cake.Unity.Tests.InfoPlistParserTests
+using System.Text;
+using Cake.Unity.SeekersOfEditors;
 
-open FsUnit.TopLevelOperators
-open NUnit.Framework
-open Cake.Unity.SeekersOfEditors
-open System.IO
-open System.Text
+namespace Cake.Unity.CSharp.Tests;
 
-[<Test>]
-let ``Parse Info.plist`` () =
-
-    // arrange
-    let xml = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+public class Tests
+{
+	private const string XML = @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <!DOCTYPE plist PUBLIC ""-//Apple//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
 <plist version=""1.0"">
 <dict>
@@ -80,12 +75,16 @@ let ``Parse Info.plist`` () =
 	<string>10.9.0</string>
 </dict>
 </plist>
-"
-    let xmlStream = new MemoryStream(Encoding.UTF8.GetBytes(xml))
-    let parser = new InfoPlistParser()
+";
 
-    // act
-    let version = parser.UnityVersionFromInfoPlist(xmlStream)
+    [Test]
+    public void ParseInfoPlist()
+    {
+        var xmlStream = new MemoryStream(Encoding.UTF8.GetBytes(XML));
+        var parser = new InfoPlistParser();
 
-    // assert
-    version |> should equal "2017.4.25f1"
+        var version = parser.UnityVersionFromInfoPlist(xmlStream);
+
+        Assert.That(version, Is.EqualTo("2017.4.25f1"));
+    }
+}
